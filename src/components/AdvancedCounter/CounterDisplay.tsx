@@ -1,18 +1,13 @@
-// This component job is to Display the current count number on screen 
+// This component job is to Display the current count number on screen
 
-
-interface CounterDisplayProps = {
-    // Count is a number that the parent will pass
-    count: Number;
-
-};
+interface CounterDisplayProps {
+    count: number;
+}
 
 function CounterDisplay({ count }: CounterDisplayProps) {
     return (
-        <div>
-            <h1>Count: {count}</h1>
-
-
+        <div className="counter-display">
+            <h1 className="counter-number">Count: {count}</h1>
         </div>
     );
 }

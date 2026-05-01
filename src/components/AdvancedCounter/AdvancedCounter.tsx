@@ -17,6 +17,8 @@ function AdvancedCounter() {
     //Array of every count value
     const [history, setHistory] = useState<number[]>([0]);
 
+    const [step, setStep] = useState<number>(1);
+
     // Effect Auto save
     // saves count to localStorage with a 500ms delay
     useEffect(() => {
@@ -65,32 +67,49 @@ function AdvancedCounter() {
         };
     }, []);
 
-// HANDLER FUNCTIONS
-// Children call these functions , but logic live here
+    // HANDLER FUNCTIONS
+    // Children call these functions , but logic live here
 
-const handleIncrement = () => {
-    const newCount: number = count + 1;
-    setCount(newCount);
-    setHistory([...history, newCount]);
-};
+    const handleIncrement = () => {
+        const newCount: number = count + step;
+        setCount(newCount);
+        setHistory([...history, newCount]);
+    };
 
-const handleDecrement = () => {
-    const newCount = count - 1;
-    setCount(newCount);
-    setHistory([...history, newCount]);
-};
+    const handleDecrement = () => {
+        const newCount = count - step;
+        setCount(newCount);
+        setHistory([...history, newCount]);
+    };
 
-return (
-    <div>
+    const handleReset = () => {
+        setCount(0);
+        setHistory([0]);
+    };
 
-        <CounterDisplay count={count} />
-        <CounterButtons
-            onIncrement={handleIncrement}
-            onDecrement={handleDecrement}
-        />
-        <CounterHistory history={history} />
-    </div>
-);
+    return (
+        <div>
+
+            <CounterDisplay count={count} />
+            <CounterButtons
+                onIncrement={handleIncrement}
+                onDecrement={handleDecrement}
+                onReset={handleReset}
+            />
+
+            <div>
+                <label>Step: </label>
+                <input type='number'
+                    value={step}
+                    onChange={(e) => setStep(Number(e.target.value))}
+                />
+
+
+
+            </div>
+            <CounterHistory history={history} />
+        </div>
+    );
 }
 
 export default AdvancedCounter;

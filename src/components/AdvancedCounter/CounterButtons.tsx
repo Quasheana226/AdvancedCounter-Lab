@@ -10,7 +10,7 @@ interface CounterButtonsProps {
 };
 
 
-function CounterButtons({ onIncrement, onDecrement }: CounterButtonsProps) {
+function CounterButtons({ onIncrement, onDecrement, onReset }: CounterButtonsProps) {
     return (
         <div>
             <button onClick={onIncrement}>
@@ -25,7 +25,14 @@ function CounterButtons({ onIncrement, onDecrement }: CounterButtonsProps) {
 
             </button>
 
-            
+            <button
+                onClick={onReset}
+                style={{ marginLeft: '8px' }}
+            >
+                🔁 Reset
+
+            </button>
+
 
             <p style={{ color: 'gray' }}> ⚡️ Tip: ArrowUp and ArrowDown keys can also be used!</p>
 
